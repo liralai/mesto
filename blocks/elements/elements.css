@@ -10,6 +10,14 @@
 @media screen and (max-width: 880px) {
   .elements {
     align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 656px) {
+  .elements {
+    align-items: center;
     flex-direction: column;
     margin-bottom: 48px;
   }

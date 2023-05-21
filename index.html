@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
+  <script src="./index.js" defer></script>
   <title>Жак-Ив Кусто</title>
 </head>
 <body class="page">
@@ -91,8 +92,8 @@
       <div class="popup__content">
         <form class="popup__form">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input id="name-input" type="text" class="popup__input"/>
-          <input id="info-input" type="text" class="popup__input"/>
+          <input id="name-input" name="input-name" type="text" class="popup__input"/>
+          <input id="info-input" name="input-info" type="text" class="popup__input"/>
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
         <button class="popup__close-button"></button>
