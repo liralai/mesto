@@ -16,3 +16,12 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 656px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    right: 0;
+    top: -36px;
+  }
+}

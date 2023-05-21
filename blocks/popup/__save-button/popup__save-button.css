@@ -3,7 +3,7 @@
   background-color: #000000;
   border: none;
   border-radius: 2px;
-  padding: 14px 124px 18px 124px;
+  padding: 16px 124px;
   margin-top: 18px;
   color: #FFFFFF;
   font-family: "Inter", "Arial", sans-serif;
@@ -18,4 +18,13 @@
 
 .popup__save-button:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 656px) {
+  .popup__save-button {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.21;
+    padding: 14px 82px;
+  }
 }
