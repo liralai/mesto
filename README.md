@@ -22,7 +22,7 @@
 
 **Ссылка на GitHub Pages**
 
-liralai.github.io/mesto/index.html
+https://liralai.github.io/mesto/index.html
 
 **Планы по развитию**
 
