@@ -30,4 +30,3 @@ popupFormEl.addEventListener('submit', function(event) {
     popupEl.classList.remove('popup_is-opened');
   });
 });
-
