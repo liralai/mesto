@@ -7,7 +7,7 @@
   column-gap: 17px;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 904px) {
   .elements {
     align-items: center;
     justify-content: center;
@@ -17,8 +17,6 @@
 
 @media screen and (max-width: 656px) {
   .elements {
-    align-items: center;
     flex-direction: column;
-    margin-bottom: 48px;
   }
 }
