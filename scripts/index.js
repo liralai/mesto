@@ -95,16 +95,20 @@ function createCard(value) {
   const titelEl = newCard.querySelector('.card__title');
   titelEl.textContent = value.name;
 
+  //Удаление карточки по клику на кнопку
+  const deleteButton = newCard.querySelector('.card__delete-button');
+  deleteButton.addEventListener('click', function () {
+    elementsSection.removeChild(newCard);
+  });
+
+  //Кнопка Like становится активной по клику, при повторном клике активное состояние убирается
+  const likeButton = newCard.querySelector('.card__like-button');
+  likeButton.addEventListener('click', function (event) {
+    event.target.classList.toggle('card__like-button_active');
+  });
+
   return newCard;
 }
-
-/*
-const deleteButton = newTodo.querySelector('.todolist-item__del');
-deleteButton.addEventListener('click', function () {
-  todolistItemsEl.removeChild(newTodo);
-});
-
-*/
 
 //Открытие попапа добавления карточки по клику на кнопку редактирования
 //При открытии поля в попапе очищаются
