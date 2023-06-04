@@ -16,6 +16,8 @@ const popupClosePlaceButtonEl = document.querySelector('#close-place-button');
 const popupFormPlaceEl = document.querySelector('#form-place');
 const namePlaceInputEl = document.querySelector('#name-place-input');
 const infoPlaceInputEl = document.querySelector('#info-place-input');
+const popupImageEl = document.querySelector('#popup-image');
+const popupImageCloseButtonEl = document.querySelector('.popup-image__close-button');
 
 const initialCards = [
   {
@@ -97,14 +99,27 @@ function createCard(value) {
 
   //Удаление карточки по клику на кнопку
   const deleteButton = newCard.querySelector('.card__delete-button');
-  deleteButton.addEventListener('click', function () {
+  deleteButton.addEventListener('click', function() {
     elementsSection.removeChild(newCard);
   });
 
   //Кнопка Like становится активной по клику, при повторном клике активное состояние убирается
   const likeButton = newCard.querySelector('.card__like-button');
-  likeButton.addEventListener('click', function (event) {
+  likeButton.addEventListener('click', function(event) {
     event.target.classList.toggle('card__like-button_active');
+  });
+
+    //Открытие попапа с картинкой по клику на изображение
+  const openImageButtonEl = newCard.querySelector('.card__open-image-button');
+  openImageButtonEl.addEventListener('click', function() {
+    openImagePopup(popupImageEl);
+
+    const imageEl = document.querySelector('.popup-image__image');
+    imageEl.src = value.link;
+    imageEl.alt = value.name;
+
+    const imageTitleEl = document.querySelector('.popup-image__title');
+    imageTitleEl.textContent = value.name;
   });
 
   return newCard;
@@ -112,19 +127,19 @@ function createCard(value) {
 
 //Открытие попапа добавления карточки по клику на кнопку редактирования
 //При открытии поля в попапе очищаются
-profileAddButtonEl.addEventListener('click', function(){
+profileAddButtonEl.addEventListener('click', function() {
   openPopup(popupPlaceEl);
   namePlaceInputEl.value = '';
   infoPlaceInputEl.value = '';
 });
 
 //Закрываем попап добавления карточки без сохранения на крестик
-popupClosePlaceButtonEl.addEventListener('click', function(){
+popupClosePlaceButtonEl.addEventListener('click', function() {
   closePopup(popupPlaceEl);
 });
 
 //Добавление новой карточки через форму
-popupFormPlaceEl.addEventListener('submit', function(event){
+popupFormPlaceEl.addEventListener('submit', function(event) {
   event.preventDefault(); //Удаление стандартного поведения кнопки
 
   //Запись в константу значений из полей формы
@@ -135,6 +150,21 @@ popupFormPlaceEl.addEventListener('submit', function(event){
     }
 
   const newCard = createCard(value); //Создание новой карточки с заданными значениями
-  elementsSection.append(newCard); //добавление карточки в конец списка
+  elementsSection.prepend(newCard); //добавление карточки в начало списка
   closePopup(popupPlaceEl);
+})
+
+ //Функция добавления модификатора попапа с изображением
+function openImagePopup(popupElement){
+  popupElement.classList.add('popup-image_opened');
+}
+
+//Функция удаления модификатора попапа с изображением
+function closeImagePopup(popupElement){
+  popupElement.classList.remove('popup-image_opened');
+}
+
+//Закрываем попап просмотра изображения карточки без сохранения на крестик
+popupImageCloseButtonEl.addEventListener('click', function() {
+  closeImagePopup(popupImageEl);
 })

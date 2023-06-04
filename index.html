@@ -58,10 +58,22 @@
     </div>
   </div>
 
+  <div class="popup-image" id="popup-image">
+    <div class="popup-image__container">
+      <figure class="popup-image__figure">
+        <img src="" alt="" class="popup-image__image">
+        <figcaption class="popup-image__title"></figcaption>
+      </figure>
+      <button type="button" class="popup-image__close-button" aria-label="Закрыть" id="close-image-button"></button>
+    </div>
+  </div>
+
   <template id="card-template">
     <article class="card">
       <button type="button" class="card__delete-button" aria-label="Удалить"></button>
-      <img src="" alt="" class="card__image">
+      <button type="button" class="card__open-image-button" aria-label="Фото">
+        <img src="" alt="" class="card__image">
+      </button>
       <div class="card__info">
         <h2 class="card__title"></h2>
         <button type="button" class="card__like-button" aria-label="Нравится"></button>
