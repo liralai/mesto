@@ -4,7 +4,7 @@
   border: none;
   border-radius: 2px;
   padding: 14px 124px;
-  margin-top: 17px;
+  margin-top: 48px;
   color: #FFFFFF;
   font-family: "Inter", "Arial", sans-serif;
   text-rendering: optimizeLegibility;
@@ -18,6 +18,15 @@
 
 .popup__save-button:hover {
   opacity: 0.8;
+}
+
+.popup__save-button:disabled {
+  color: #000000;
+  background: transparent;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.2;
+  border: 1px solid #000000;
 }
 
 @media screen and (max-width: 656px) {

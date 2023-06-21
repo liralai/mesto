@@ -20,6 +20,7 @@ const popupImageEl = document.querySelector('#popup-image');
 const popupImageCloseButtonEl = document.querySelector('#close-image-button');
 const imageEl = document.querySelector('.popup-image__image');
 const imageTitleEl = document.querySelector('.popup-image__title');
+const popupEl = document.querySelectorAll('.popup')
 
 const initialCards = [
   {
@@ -61,6 +62,26 @@ popupCloseProfileButtonEl.addEventListener('click', function() {
   closePopup(popupProfileEl);
 });
 
+//Закрытие попапа редактирование профиля без сохранения на Escape
+function closePopupOnEsc (event) {
+  if (event.keyCode === 27) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  };
+};
+
+//Закрытие попапа редактирование профиля без сохранения на область вне попапа
+function closePopupOnOverlay (event) {
+  const popupOpened = document.querySelectorAll('.popup_opened');
+
+  popupOpened.forEach(() => {
+    const popupContainer = document.querySelector('.popup__container');
+    if (!event.currentTarget === popupContainer) {
+      closePopup(popupOpened);
+    };
+  });
+};
+
 //Сохранение изменений в попапе по клику на кнопку Сохранить
 FormProfileEl.addEventListener('submit', function(event) {
 
@@ -75,11 +96,15 @@ FormProfileEl.addEventListener('submit', function(event) {
 //Функция добавления модификатора попапа
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown',closePopupOnEsc);
+  document.addEventListener('click', closePopupOnOverlay);
 }
 
 //Функция удаления модификатора попапа
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown',closePopupOnEsc);
+  document.removeEventListener('click', closePopupOnOverlay);
 }
 
 //Создание карточки для каждого элемента массива
