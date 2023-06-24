@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <script src="./scripts/index.js" defer></script>
+  <script src="./scripts/cards.js" defer></script>
   <script src="./scripts/validate.js" defer></script>
+  <script src="./scripts/index.js" defer></script>
   <title>Место</title>
 </head>
 <body class="page">
@@ -40,10 +41,14 @@
       <form name="profile-form" class="popup__form" novalidate>
         <fieldset class="popup__set">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input id="name-profile-input" name="name-profile-input" type="text" placeholder="Ваше имя" class="popup__input" minlength="2" maxlength="40" required/>
-          <span class="popup__input-error name-profile-input-error"></span>
-          <input id="info-profile-input" name="info-profile-input" type="text" placeholder="Ваша профессия" class="popup__input" minlength="2" maxlength="200" required/>
-          <span class="popup__input-error info-profile-input-error"></span>
+          <div class="popup__input-container">
+            <input id="name-profile-input" name="name-profile-input" type="text" placeholder="Ваше имя" class="popup__input" minlength="2" maxlength="40" required/>
+            <span class="popup__input-error name-profile-input-error"></span>
+          </div>
+          <div class="popup__input-container">
+            <input id="info-profile-input" name="info-profile-input" type="text" placeholder="Ваша профессия" class="popup__input" minlength="2" maxlength="200" required/>
+            <span class="popup__input-error info-profile-input-error"></span>
+          </div>
           <button type="submit" class="popup__save-button" aria-label="Сохранить">Сохранить</button>
         </fieldset>
       </form>
@@ -56,10 +61,14 @@
       <form name="card-form" class="popup__form" novalidate>
         <fieldset class="popup__set">
           <h2 class="popup__title">Новое место</h2>
-          <input id="name-place-input" name="name-place-input" type="text" placeholder="Название" class="popup__input" minlength="2" maxlength="30" required/>
-          <span class="popup__input-error name-place-input-error"></span>
-          <input id="info-place-input" name="info-place-input" type="url" placeholder="Ссылка на картинку" class="popup__input" required/>
-          <span class="popup__input-error info-place-input-error"></span>
+          <div class="popup__input-container">
+            <input id="name-place-input" name="name-place-input" type="text" placeholder="Название" class="popup__input" minlength="2" maxlength="30" required/>
+            <span class="popup__input-error name-place-input-error"></span>
+          </div>
+          <div class="popup__input-container">
+            <input id="info-place-input" name="info-place-input" type="url" placeholder="Ссылка на картинку" class="popup__input" required/>
+            <span class="popup__input-error info-place-input-error"></span>
+          </div>
           <button type="submit" class="popup__save-button" aria-label="Создать">Создать</button>
         </fieldset>
       </form>
