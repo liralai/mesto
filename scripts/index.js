@@ -60,6 +60,9 @@ formProfileEl.addEventListener('submit', function(event) {
   profileTitleEl.textContent = infoProfileInputEl.value;
 
   closePopup(popupProfileEl);
+
+  const closeButton = formProfileEl.querySelector('.popup__save-button');
+  disableButton(closeButton);
 });
 
 //Функция добавления модификатора попапа
@@ -146,7 +149,9 @@ formCardEl.addEventListener('submit', function(event) {
   closePopup(popupPlaceEl);
 
   event.target.reset();
-  enableValidation(validationConfig);
+
+  const closeButton = formCardEl.querySelector('.popup__save-button');
+  disableButton(closeButton);
 });
 
 //Закрытие попап редактирования профиля без сохранения на крестик
