@@ -20,6 +20,8 @@ const popupImageEl = document.querySelector('#popup-image');
 const popupImageCloseButtonEl = document.querySelector('#close-image-button');
 const imageEl = document.querySelector('.popup-image__image');
 const imageTitleEl = document.querySelector('.popup-image__title');
+const profileFormSubmitButton = formProfileEl.querySelector('.popup__save-button');
+const cardFormSubmitButton = formCardEl.querySelector('.popup__save-button');
 
 //Открытие попапа редактирования профиля по клику на кнопку редактирования
 profileEditButtonEl.addEventListener('click', function() {
@@ -61,8 +63,7 @@ formProfileEl.addEventListener('submit', function(event) {
 
   closePopup(popupProfileEl);
 
-  const closeButton = formProfileEl.querySelector('.popup__save-button');
-  disableButton(closeButton);
+  disableButton(profileFormSubmitButton);
 });
 
 //Функция добавления модификатора попапа
@@ -150,8 +151,7 @@ formCardEl.addEventListener('submit', function(event) {
 
   event.target.reset();
 
-  const closeButton = formCardEl.querySelector('.popup__save-button');
-  disableButton(closeButton);
+  disableButton(cardFormSubmitButton);
 });
 
 //Закрытие попап редактирования профиля без сохранения на крестик
