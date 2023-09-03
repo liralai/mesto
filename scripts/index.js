@@ -19,8 +19,8 @@ const namePlaceInputEl = document.querySelector('#name-place-input');
 const infoPlaceInputEl = document.querySelector('#info-place-input');
 const popupImageEl = document.querySelector('#popup-image');
 const popupImageCloseButtonEl = document.querySelector('#close-image-button');
-const profileFormSubmitButton = formProfileEl.querySelector('.popup__save-button');
-const cardFormSubmitButton = formCardEl.querySelector('.popup__save-button');
+const imageEl = document.querySelector('.popup-image__image');
+const imageTitleEl = document.querySelector('.popup-image__title');
 
 const initialCards = [
   {
@@ -49,16 +49,20 @@ const initialCards = [
   }
 ];
 
-const validationConfig = new FormValidator( {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   fieldsetSelector: '.popup__set',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
-});
+};
 
-validationConfig.enableValidation();
+const formProfileValidation = new FormValidator(validationConfig, formProfileEl);
+formProfileValidation.enableValidation();
+
+const formCardValidation = new FormValidator(validationConfig, formCardEl);
+formCardValidation.enableValidation();
 
 //Открытие попапа редактироsвания профиля по клику на кнопку редактирования
 profileEditButtonEl.addEventListener('click', function() {
@@ -83,13 +87,13 @@ formProfileEl.addEventListener('submit', function(event) {
 
   closePopup(popupProfileEl);
 
-  validationConfig.disableButton(profileFormSubmitButton);
+  formProfileValidation.disableButton();
 });
 
 //Создание карточки для каждого элемента массива
 initialCards.forEach(function(item) {
-  const card = new Card(item);
-  cardsSection.append(card.getView()); //Добавление карточек в секцию elements
+  const card = createCard(item);
+  cardsSection.append(card); //Добавление карточек в секцию elements
 });
 
 //Открытие попапа добавления карточки по клику на кнопку редактирования
@@ -114,16 +118,30 @@ formCardEl.addEventListener('submit', function(event) {
       link: infoPlaceInputEl.value
     }
 
-  const card = new Card(value); //Создание новой карточки с заданными значениями
-  cardsSection.prepend(card.getView()); //добавление карточки в начало списка
+  const card = createCard(value); //Создание новой карточки с заданными значениями
+  cardsSection.prepend(card); //добавление карточки в начало списка
   closePopup(popupPlaceEl);
 
   event.target.reset();
 
-  validationConfig.disableButton(cardFormSubmitButton);
+  formCardValidation.disableButton();
 });
 
 //Закрытие попап редактирования профиля без сохранения на крестик
 popupImageCloseButtonEl.addEventListener('click', function() {
   closePopup(popupImageEl);
 });
+
+function handleCardClick(name, link) {
+  imageEl.src = link;
+  imageEl.alt = name;
+
+  imageTitleEl.textContent = name;
+
+  openPopup(popupImageEl);
+};
+
+function createCard(item) {
+  const cardElement = new Card(item, '#card-template', handleCardClick); //Создание новой карточки с заданными значениями
+  return cardElement.getView();
+};

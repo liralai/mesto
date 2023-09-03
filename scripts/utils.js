@@ -29,4 +29,4 @@ function closePopup(popupElement) {
   document.removeEventListener('click', closePopupOnOverlay);
 }
 
-export { closePopupOnEsc, closePopupOnOverlay, openPopup, closePopup };
+export { openPopup, closePopup };

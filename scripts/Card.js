@@ -1,14 +1,15 @@
-import { openPopup } from "./utils.js";
-
 class Card {
-  constructor({name, link}) {
+
+  constructor({name, link}, templateSelector, handleCardClick) {
     this._title = name;
     this._link = link;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   };
 
   _getTemplate() {
     const cardTemplate = document
-      .querySelector('#card-template')
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -30,39 +31,30 @@ class Card {
     this._newCard = null;
   }
 
-  _handleLikeCard(button) {
-    button.classList.toggle('card__like-button_active');
-  }
-
-  _handleOpenImg() {
-    const imageEl = document.querySelector('.popup-image__image');
-    const imageTitleEl = document.querySelector('.popup-image__title');
-    const popupImageEl = document.querySelector('#popup-image');
-
-    openPopup(popupImageEl);
-
-      imageEl.src = this._link;
-      imageEl.alt = this._title;
-
-      imageTitleEl.textContent = this._title;
+  _handleLikeCard() {
+    this._likeButton.classList.toggle('card__like-button_active');
   }
 
   _setListeners() {
-    const deleteButton = this._newCard.querySelector('.card__delete-button');
-    deleteButton.addEventListener('click', () => this._handleDeleteCard());
+    //const deleteButton = this._newCard.querySelector('.card__delete-button');
+    this._deleteButton.addEventListener('click', () => this._handleDeleteCard());
 
     //Кнопка Like становится активной по клику, при повторном клике активное состояние убирается
-    const likeButton = this._newCard.querySelector('.card__like-button');
-    likeButton.addEventListener('click', () => this._handleLikeCard(likeButton));
+    //const likeButton = this._newCard.querySelector('.card__like-button');
+    this._likeButton.addEventListener('click', () => this._handleLikeCard());
 
-    const openImageButton = this._newCard.querySelector('.card__open-image-button');
-    openImageButton.addEventListener('click', () => this._handleOpenImg());
+    //const openImageButton = this._newCard.querySelector('.card__open-image-button');
+    this._openImageButton.addEventListener('click', () => this._handleCardClick(this._title, this._link));
   }
 
   getView() {
     this._newCard = this._getTemplate();
+
+    this._deleteButton = this._newCard.querySelector('.card__delete-button');
+    this._likeButton = this._newCard.querySelector('.card__like-button');
+    this._openImageButton = this._newCard.querySelector('.card__open-image-button');
+
     this._setData();
-    console.log(this);
     this._setListeners();
 
     return this._newCard;
