@@ -13,10 +13,7 @@ class FormValidator {
   //Функция показа ошибки в инпуте
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-    console.log(inputElement);
-    console.log(errorElement);
     inputElement.classList.add(this._inputErrorClass);
-    console.log(inputElement);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   };
@@ -32,8 +29,6 @@ class FormValidator {
   //Функция проверки инпута на валидность
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      console.log(123);
-      console.log(inputElement);
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
       this._hideInputError(inputElement);

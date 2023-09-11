@@ -36,14 +36,11 @@ class Card {
   }
 
   _setListeners() {
-    //const deleteButton = this._newCard.querySelector('.card__delete-button');
     this._deleteButton.addEventListener('click', () => this._handleDeleteCard());
 
     //Кнопка Like становится активной по клику, при повторном клике активное состояние убирается
-    //const likeButton = this._newCard.querySelector('.card__like-button');
     this._likeButton.addEventListener('click', () => this._handleLikeCard());
 
-    //const openImageButton = this._newCard.querySelector('.card__open-image-button');
     this._openImageButton.addEventListener('click', () => this._handleCardClick(this._title, this._link));
   }
 
