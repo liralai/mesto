@@ -19,10 +19,10 @@ export class Popup {
 
   //Закрытие попапа редактирование профиля без сохранения на Escape
   _handleEscClose(event) {
-  if (event.key === 'Escape') {
-    this.close();
-  };
-  };
+    if (event.key === 'Escape') {
+      this.close();
+    };
+  }
 
 //Закрытие попапа редактирование профиля без сохранения на область вне попапа
   setEventListeners() {

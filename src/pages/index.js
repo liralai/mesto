@@ -53,9 +53,11 @@ const validationConfig = {
 
 const formProfileValidation = new FormValidator(validationConfig, formProfileEl);
 formProfileValidation.enableValidation();
+formProfileValidation.disableButton();
 
 const formCardValidation = new FormValidator(validationConfig, formCardEl);
 formCardValidation.enableValidation();
+formCardValidation.disableButton();
 
 function createCard(items) {
   const cardElement = new Card(items, '#card-template', handleCardClick); //Создание новой карточки с заданными значениями
@@ -73,13 +75,17 @@ popupWithImage.setEventListeners();
 //Открытие попапа редактироsвания профиля по клику на кнопку редактирования
 profileEditButtonEl.addEventListener('click', () => {
   popupEditProfile.open();
+  const profileInfo = userInfo.getUserInfo();
 
-  nameProfileInputEl.value = userInfo.getUserInfo().name;
-  infoProfileInputEl.value = userInfo.getUserInfo().info;
+  nameProfileInputEl.value = profileInfo.name;
+  infoProfileInputEl.value = profileInfo.info;
 });
 
 const popupEditProfile = new PopupWithForm('#popup-profile', value => {
-  userInfo.setUserInfo(value);
+  userInfo.setUserInfo({
+    name: value['name-profile-input'],
+    info: value['info-profile-input']
+});
   popupEditProfile.close();
 });
 popupEditProfile.setEventListeners();
@@ -91,8 +97,8 @@ profileAddButtonEl.addEventListener('click', () => {
 
 const popupEditCard = new PopupWithForm('#popup-place', value => {
   const card = {
-    name: value.name,
-    link: value.link
+    name: value['name-place-input'],
+    link: value['info-place-input']
   };
   section.addItem(createCard(card));
   popupEditCard.close();
